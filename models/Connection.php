@@ -14,9 +14,9 @@ class Connection
     {
         /** Le nom du serveur
          * @var string
-        */
+         */
         $DB_HOST = "127.0.0.1";
-        
+
         /** Le nom de la base de données
          * @var string
          */
@@ -31,6 +31,7 @@ class Connection
          * @var string
          */
         $PASSWORD = "";
+
         $dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME;";
 
         try {

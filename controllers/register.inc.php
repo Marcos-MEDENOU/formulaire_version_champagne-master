@@ -24,10 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["register"])) {
          //Envoyer les informations dans la base de donnée
         $registerModel = new RegisterModel($firstname, $lastname, $username, $email, $password);
             
-            if($registerModel->registerUser()){
-                header("Location:../views/Sig_in.php"); 
-            }else{
-                header("Location:../views/Sig_up.php?msg=emptyInputs&userfirstname=$firstname&userlastname=$lastname&username=$username&useremail=$email&password=$password");
-            }
+        $registerModel->registerUser();
     }
 }

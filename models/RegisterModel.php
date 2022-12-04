@@ -14,7 +14,7 @@ class RegisterModel extends Connection {
         $this->password = $password;
     }
 
-        public function verify_email_without_inscription(){
+    public function verify_email_without_inscription(){
               
             try {
                 $conn = $this->connect();
@@ -31,33 +31,34 @@ class RegisterModel extends Connection {
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
-        }
-
-        public function registerUser() {
-        // Connection à la BDD
-        try {
-            //code...
-            $conn = $this->connect();
-            if($this->verify_email_without_inscription()=='false'){
-                $sql = "INSERT INTO 
-            `db`.userss VALUES ( NULL,
-            :userlastname, :userfirstname, :username, :useremail, :userpassword)";
-                $stmt = $conn->prepare($sql);
-                $stmt = $stmt->execute([
-                    ":userlastname" => $this->lastname,
-                    ":userfirstname" => $this->firstname,
-                    ":username" => $this->username,
-                    ":useremail" => $this->email,
-                    ":userpassword" => password_hash($this->password, PASSWORD_DEFAULT),
-                ]);
-            }else {
-                header("location: ../views/Sig_up.php?msg=inavlid"); 
-            }
-            
-        } catch (PDOException $e) {
-            //throw $th;
-           echo $e->getMessage();        
-        }    
     }
-}
 
+    public function registerUser() {
+        if ($this->verify_email_without_inscription() == 'false') {
+            try {
+                //code...
+                $conn = $this->connect();
+                
+                    $sql = "INSERT INTO 
+                `db`.userss VALUES ( NULL,
+                :userlastname, :userfirstname, :username, :useremail, :userpassword)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt = $stmt->execute([
+                        ":userlastname" => $this->lastname,
+                        ":userfirstname" => $this->firstname,
+                        ":username" => $this->username,
+                        ":useremail" => $this->email,
+                        ":userpassword" => password_hash($this->password, PASSWORD_DEFAULT),
+                    ]);
+                
+            
+                } catch (PDOException $e) {
+                    //throw $th;
+                echo $e->getMessage();        
+                }    
+        }else {
+                    header("location: ../views/Sig_up.php?msg=inavlid"); 
+        }
+    }
+
+}

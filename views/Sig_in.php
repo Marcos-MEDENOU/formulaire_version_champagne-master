@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +21,14 @@
         <div class="block_formulaire">
             <h1>Learn JS | Connexion</h1>
             <form action="../controllers/login.inc.php" method="post">
-                <input type="email" name="Email" value="<?php echo $_GET["usermail"] ?? '' ?>" placeholder="email" ><br>
-                <input type="password" name="password" placeholder="password" ><br>
+                <input type="email" name="Email" value="<?php echo $_GET["usermail"] ?? '';
+                                                        ?>" placeholder="email"><br>
+                <input type="password" name="password" placeholder="password"><br>
                 <button type="submit" name="connexion">Se connecter</button>
-                <button type="reset">Raffraichir la page</button>
-                <p>Nouveau sur Learn JS ? <a href="./Sig_up.php">créer un compte</a></p>
+                <button type="reset">Raffraichir</button>
+                <p>Nouveau sur Learn JS ?
+                    <a href="./Sig_up.php">créer un compte</a>
+                </p>
             </form>
         </div>
     </main>

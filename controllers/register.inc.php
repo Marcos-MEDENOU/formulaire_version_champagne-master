@@ -23,9 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["register"])) {
     if( $registerCtrl->valideInput()=='false'){
          //Envoyer les informations dans la base de donnée
         $registerModel = new RegisterModel($firstname, $lastname, $username, $email, $password);
-            $registerModel->registerUser();
-        header("Location:../views/Sig_in.php");
-    }else{
-        header("Location:../views/Sig_up.php?msg=emptyInputs&userfirstname=$this->firstname&userlastname=$this->lastname&username=$this->username&useremail=$this->email&passwordNotMatch&password=$this->password");
+            
+            if($registerModel->registerUser()){
+                header("Location:../views/Sig_in.php"); 
+            }else{
+                header("Location:../views/Sig_up.php?msg=emptyInputs&userfirstname=$firstname&userlastname=$lastname&username=$username&useremail=$email&password=$password");
+            }
     }
 }

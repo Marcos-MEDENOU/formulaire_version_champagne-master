@@ -8,22 +8,36 @@ form{
 
 }
 body{
-    background-color: rgb(42, 41, 41);
+    background-color: #060505;
 }
 .block_formulaire{
-    height: 100vh;
     display: flex;
-    gap: 20px;
+    padding: 35px;
+    width: fit-content;
+    height: 90vh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: 0 auto;
- 
+     justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(15, 14, 14);
+    border-radius:5px;
+    --border-size: 2px;
+        --border-angle: 0turn;
+        width: fit-content;
+        height: fit-content;
+        background-image: conic-gradient(from var(--border-angle), #213, #112 50%, #213), conic-gradient(from var(--border-angle), transparent 20%, rgb(149, 194, 158), rgb(153, 153, 87));
+        background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        -webkit-animation: bg-spin 3s linear infinite;
+        animation: bg-spin 6s linear infinite;
 }
 
 .block_formulaire h1{
     color: white;
 }
+
 form input{
     height: 40px;
     width: 250px;
@@ -56,4 +70,27 @@ form button{
 span{
     text-align: left;
     color: white;
+}
+
+@-webkit-keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
+@keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
+.box:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
 }
